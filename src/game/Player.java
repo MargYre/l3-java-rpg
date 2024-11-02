@@ -1,13 +1,15 @@
 //src/Player.java
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     private int x;
     private int y;
     private String name;
     private int coins;
-    //private ArrayList<Weapon> inventory;
+    private List<String> inventory;
 
     //Constructeur
     public Player(String name) {
@@ -15,7 +17,7 @@ public class Player {
         this.x = 0;
         this.y = 0;
         this.coins = 80;
-        //this.inventory = new ArrayList<>();
+        this.inventory = new ArrayList<>();
     }
     //Getters et setters
     public int getX() {
@@ -59,6 +61,17 @@ public class Player {
     }
     public void notEnoughCoins() {
         System.out.println("Vous n'avez pas assez de pièces.");
+    }
+    public void addItem(String item) {
+        inventory.add(item);
+        System.out.println(item + " a été ajouté à votre inventaire.");
+    }
+    public String showInventory() {
+        StringBuilder sb = new StringBuilder("Inventaire :\n");
+        for (String item : inventory) {
+            sb.append("- ").append(item).append("\n");
+        }
+        return sb.toString();
     }
     //armes
     /*public void addWeapon(Weapon weapon) {

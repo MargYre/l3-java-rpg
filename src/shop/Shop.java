@@ -25,4 +25,9 @@ public class Shop {
             return null;
         }
     }
+    public void removeItem(int index) {
+        if (index >= 0 && index < items.size()) {
+            items.remove(index); // Supprime l'article de la liste
+        }
+    }
 }
