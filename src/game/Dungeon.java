@@ -1,3 +1,4 @@
+package game;
 public class Dungeon {
     private char[][] map;
     private int width;

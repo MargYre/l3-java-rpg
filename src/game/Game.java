@@ -1,14 +1,22 @@
+package game;
 import java.util.Scanner;
+
+import shop.Shop;
+import shop.ShopInterac;
 
 public class Game {
     private Player player;
     private Dungeon dungeon;
+    private Shop shop;
+    private ShopInterac shopInterac;
     private Scanner scanner;
 
     public Game(String playerName) {
         this.scanner = new Scanner(System.in);
         this.player = new Player(playerName);
         this.dungeon = new Dungeon(10, 10, player);
+        this.shop = new Shop();
+        this.shopInterac = new ShopInterac(shop, scanner);
     }
 
     public void start() {
@@ -40,8 +48,7 @@ public class Game {
                     dungeon.displayMap();
                     break;
                 case "B":
-                    System.out.println("Boutique non encore implémentée.");
-                    //shopInteraction.openShop(player); // Accès à la boutique
+                    shopInterac.openShop(player); // Accès à la boutique
                     break;
                 case "Q":
                     gameRunning = false;
@@ -51,7 +58,6 @@ public class Game {
                     System.out.println("Commande invalide !");
             }
         }
-
         scanner.close();
     }
 }

@@ -1,4 +1,7 @@
 //src/Player.java
+package game;
+
+
 public class Player {
     private int x;
     private int y;

@@ -1,6 +1,6 @@
 # Définit les variables
 SRC_DIR = src
-CLASSES = $(SRC_DIR)/*.java  # Compile tous les fichiers Java dans src
+# CLASSES = $(SRC_DIR)/*.java  Compile tous les fichiers Java dans src
 MAIN_CLASS = Main
 
 # Cible par défaut
@@ -8,7 +8,7 @@ all: compile
 
 # Compile tous les fichiers .java
 compile:
-	javac $(CLASSES)
+	javac $(SRC_DIR)/**/*.java $(SRC_DIR)/*.java
 
 # Exécute le programme principal
 run: compile
