@@ -1,6 +1,6 @@
 # Définit les variables
 SRC_DIR = src
-CLASSES = $(SRC_DIR)/Dungeon.java $(SRC_DIR)/Game.java $(SRC_DIR)/Main.java $(SRC_DIR)/Player.java
+CLASSES = $(SRC_DIR)/*.java  # Compile tous les fichiers Java dans src
 MAIN_CLASS = Main
 
 # Cible par défaut

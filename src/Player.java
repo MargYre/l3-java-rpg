@@ -1,11 +1,10 @@
-import java.util.ArrayList;
-
+//src/Player.java
 public class Player {
     private int x;
     private int y;
     private String name;
     private int coins;
-    private ArrayList<Weapon> inventory;
+    //private ArrayList<Weapon> inventory;
 
     //Constructeur
     public Player(String name) {
@@ -13,7 +12,7 @@ public class Player {
         this.x = 0;
         this.y = 0;
         this.coins = 80;
-        this.inventory = new ArrayList<>();
+        //this.inventory = new ArrayList<>();
     }
     //Getters et setters
     public int getX() {
@@ -59,7 +58,7 @@ public class Player {
         System.out.println("Vous n'avez pas assez de pièces.");
     }
     //armes
-    public void addWeapon(Weapon weapon) {
+    /*public void addWeapon(Weapon weapon) {
         inventory.add(weapon);
         System.out.println(weapon.getName() + " a été ajouté à votre inventaire.");
     }
@@ -69,5 +68,5 @@ public class Player {
             s.append("- ").append(w.toString()).append("\n");
         }
         return s.toString();
-    }
+    }*/
 }

@@ -1,65 +1,57 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.util.Scanner;
 
-public class Game extends JPanel { //JPanel est une classe de base de Swing
-    private Dungeon dungeon;
+public class Game {
     private Player player;
+    private Dungeon dungeon;
+    private Scanner scanner;
 
-    public Game() {
-        player = new Player("Plop");
-        dungeon = new Dungeon(10,10, player);
-
-        setFocusable(true); //Permet de cliquer sur le panel
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                    case KeyEvent.VK_UP:
-                        dungeon.movePlayer(0, -1);
-                        break;
-                    case KeyEvent.VK_DOWN:
-                        dungeon.movePlayer(0, 1);
-                        break;
-                    case KeyEvent.VK_LEFT:
-                        dungeon.movePlayer(-1, 0);
-                        break;
-                    case KeyEvent.VK_RIGHT:
-                        dungeon.movePlayer(1, 0);
-                        break;
-                }
-                repaint(); // Redessine le panneau
-            }
-        });
+    public Game(String playerName) {
+        this.scanner = new Scanner(System.in);
+        this.player = new Player(playerName);
+        this.dungeon = new Dungeon(10, 10, player);
     }
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        dungeon.displayMap(); // Affiche la carte dans la console
 
-        // Affiche la carte dans l'interface graphique
-        for (int y = 0; y < 10; y++) {
-            for (int x = 0; x < 10; x++) {
-                char cell = dungeon.getMap()[y][x];
-                if (cell == 'P') {
-                    g.setColor(Color.BLUE);
-                } else {
-                    g.setColor(Color.LIGHT_GRAY);
-                }
-                g.fillRect(x * 30, y * 30, 30, 30);
-                g.setColor(Color.BLACK);
-                g.drawRect(x * 30, y * 30, 30, 30);
+    public void start() {
+        System.out.println("Bienvenue " + player.getName() + "! Essaye de sortir du donjon.");
+        System.out.println("Pour vous déplacer dans le donjon, utilisez S (haut), W (gauche), X (bas), C (droite) pour vous déplacer.");
+        System.out.println("Utilisez Q pour quitter et B pour accéder à la boutique.");
+
+        boolean gameRunning = true;
+
+        while (gameRunning) {
+            System.out.print("Entrez une commande (S/X/W/C/B/Q) : ");
+            String input = scanner.nextLine().toUpperCase();
+
+            switch (input) {
+                case "S":
+                    dungeon.movePlayer(0, -1); // Haut
+                    dungeon.displayMap();
+                    break;
+                case "X":
+                    dungeon.movePlayer(0, 1); // Bas
+                    dungeon.displayMap();
+                    break;
+                case "W":
+                    dungeon.movePlayer(-1, 0); // Gauche
+                    dungeon.displayMap();
+                    break;
+                case "C":
+                    dungeon.movePlayer(1, 0); // Droite
+                    dungeon.displayMap();
+                    break;
+                case "B":
+                    System.out.println("Boutique non encore implémentée.");
+                    //shopInteraction.openShop(player); // Accès à la boutique
+                    break;
+                case "Q":
+                    gameRunning = false;
+                    System.out.println("Vous avez quitté le donjon.");
+                    break;
+                default:
+                    System.out.println("Commande invalide !");
             }
         }
-    }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Dungeon Game");
-        Game game = new Game();
-        frame.add(game);
-        frame.setSize(320, 340);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        scanner.close();
     }
 }
