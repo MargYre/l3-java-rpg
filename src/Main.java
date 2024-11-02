@@ -4,31 +4,41 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Player player = new Player("Plop");
-        Dungeon dungeon = new Dungeon(10, 10, player);
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Amusez vous à vous déplacer dans le donjon ! Utilisez S (haut), W (gauche), X (bas), C (droite) pour vous déplacer. Q pour quitter.");
-        
+        System.out.println("Pour vous déplacer dans le donjon, utilisez S (haut), W (gauche), X (bas), C (droite) pour vous déplacer.");
+        System.out.println("Utilisez Q pour quitter et B pour accéder à la boutique.");
+        System.out.println("Entrez votre nom : ");
+        String playerName = scanner.nextLine();
+        System.out.println("Bienvenue " + playerName + "! Essaye de sortir du donjon.");
+        Player player = new Player(playerName);
+        Dungeon dungeon = new Dungeon(10, 10, player);
         boolean gameRunning = true;
 
         while (gameRunning) {
-            dungeon.displayMap();
             System.out.print("Entrez une commande (S/X/W/C ou Q) : ");
             String input = scanner.nextLine().toUpperCase();
 
             switch (input) {
                 case "S":
                     dungeon.movePlayer(0, -1); // Haut
+                    dungeon.displayMap();
                     break;
                 case "X":
                     dungeon.movePlayer(0, 1); // Bas
+                    dungeon.displayMap();
                     break;
                 case "W":
                     dungeon.movePlayer(-1, 0); // Gauche
+                    dungeon.displayMap();
                     break;
                 case "C":
                     dungeon.movePlayer(1, 0); // Droite
+                    dungeon.displayMap();
+                    break;
+                case "B":
+                    System.out.println("Vous êtes dans la boutique.");
                     break;
                 case "Q":
                     gameRunning = false;
