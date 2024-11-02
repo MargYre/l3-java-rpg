@@ -1,21 +1,28 @@
 //src/shop/Shop.java
 package shop;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
-    private List<String> items;
+    private List<ShopItem> items;
 
     public Shop() {
         this.items = new ArrayList<>();
-        items.add("Kit de Crochetage - 15 pièces"); // Exemple d'article
+        items.add(new ShopItem("Kit de Crochetage", 10)); // Exemple d'article
     }
 
     public void displayItems() {
         System.out.println("Articles disponibles dans la boutique :");
         for (int i = 0; i < items.size(); i++) {
             System.out.println("[" + i + "] " + items.get(i));
+        }
+        System.out.println("Entrez un numéro pour acheter ou 'q' pour quitter.");
+    }
+    public ShopItem getItem(int index) {
+        if (index >= 0 && index < items.size()) {
+            return items.get(index);
+        } else {
+            return null;
         }
     }
 }

@@ -27,6 +27,7 @@ public class Game {
         boolean gameRunning = true;
 
         while (gameRunning) {
+            dungeon.displayMap();
             System.out.print("Entrez une commande (S/X/W/C/B/Q) : ");
             String input = scanner.nextLine().toUpperCase();
 

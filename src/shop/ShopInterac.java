@@ -15,6 +15,16 @@ public class ShopInterac {
 
     public void openShop(Player player) {
         System.out.println("Bienvenue dans la boutique !");
-        shop.displayItems(); // Affiche les articles de la boutique
+        boolean shopping = true;
+        while (shopping) {
+            shop.displayItems();
+            System.out.print("Votre choix : ");
+            String choice = scanner.nextLine();
+            if (choice.equalsIgnoreCase("q")) {
+                shopping = false; // Quitter la boutique
+                System.out.println("Vous avez quitté la boutique.");
+            } 
+        }
+
     }
 }
