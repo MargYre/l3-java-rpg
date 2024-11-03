@@ -4,6 +4,9 @@ public class Dungeon {
     private int width;
     private int height;
     private Player player;
+    private Monster monster;
+    private int exitX;
+    private int exitY;
 
     // Getter
     public char[][] getMap() {
@@ -14,6 +17,8 @@ public class Dungeon {
         this.height = height;
         this.map = new char[height][width];
         this.player = player;
+        //this.monster = new Monster("Monstre", 50, 20, 8, 5, 'M');
+        this.monster = new Monster("Monstre", 50, 20, 2, 1, 'M');
         initializeMap();
     }
     private void initializeMap() {
@@ -23,6 +28,10 @@ public class Dungeon {
             }
         }
         map[player.getY()][player.getX()] = 'P';
+        map[4][9] = '_';  // Mur au-dessus
+        map[6][9] = '_';  // Mur en-dessous
+        map[5][9] = 'E';
+        map[monster.getY()][monster.getX()] = monster.getSymbol();
     }
     public void displayMap() {
         for (int i = 0; i < height; i++) {
@@ -38,6 +47,10 @@ public class Dungeon {
         int newX = player.getX() + X;
         int newY = player.getY() + Y;
 
+        if (map[newY][newX] == '_') {
+            map[player.getY()][player.getX()] = 'P';
+            return;
+        }
         if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
             player.setX(newX);
             player.setY(newY);
