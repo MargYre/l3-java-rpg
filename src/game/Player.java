@@ -15,7 +15,7 @@ public class Player extends Character {
 
     //Constructeur
     public Player(String name) {
-        super(name, 100, 0, 0);
+        super(name, 100, 0, 0); // Health, X, Y
         this.x = 0;
         this.y = 0;
         this.coins = 80;
@@ -74,5 +74,20 @@ public class Player extends Character {
         }
         return sb.toString();
     }
-    
+    //pour le combat
+    public void equipWeapon(Weapon weapon) {
+        this.equippedWeapon = weapon;
+        System.out.println("Vous avez équipé " + weapon.getName());
+    }
+    public int getAttackDamage() {
+        if (equippedWeapon == null) {
+            return 1;  // Dégâts de base sans arme
+        }
+        return equippedWeapon.getDamage();
+    }
+    //pour le combat
+    @Override
+    protected void die() {
+        System.out.println("Game Over! " + getName() + " est mort...");
+    }
 }
