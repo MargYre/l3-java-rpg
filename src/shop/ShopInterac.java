@@ -21,7 +21,7 @@ public class ShopInterac {
             System.out.print("Votre choix : ");
             String choice = scanner.nextLine();
             if (choice.equalsIgnoreCase("q")) {
-                shopping = false; // Quitter la boutique
+                shopping = false;
                 System.out.println("Vous avez quitté la boutique.");
             } else {
                 try {
@@ -31,8 +31,8 @@ public class ShopInterac {
                     if (item != null) {
                         if (player.canAfford(item.getPrice())) {
                             player.spendCoins(item.getPrice());
-                            player.addItem(item.getName()); // Ajoute l'article à l'inventaire du joueur
-                            System.out.println("Vous avez acheté : " + item.getName());
+                            player.addItem(item.getName());
+                            System.out.println(" **Vous avez acheté : " + item.getName() + "**");
                             shop.removeItem(index);
                         } else {
                             System.out.println("Vous n'avez pas assez de pièces pour acheter " + item.getName() + ".");

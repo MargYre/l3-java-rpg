@@ -9,7 +9,7 @@ public class Shop {
     public Shop() {
         this.items = new ArrayList<>();
         items.add(new ShopItem("Kit de Crochetage", 10)); // Exemple d'article
-        items.add(new Axe("Steel Axe", 50, 5));
+        items.add(new Axe("Axe", 50, 5));
     }
 
     public void displayItems() {

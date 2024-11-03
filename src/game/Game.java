@@ -22,13 +22,13 @@ public class Game {
     public void start() {
         System.out.println("Bienvenue " + player.getName() + "! Essaye de sortir du donjon.");
         System.out.println("Pour vous déplacer dans le donjon, utilisez S (haut), W (gauche), X (bas), C (droite) pour vous déplacer.");
-        System.out.println("Utilisez Q pour quitter et B pour accéder à la boutique.");
+        System.out.println("Utilisez Q pour quitter et B pour accéder à la boutique, I pour afficher votre inventaire.");
 
         boolean gameRunning = true;
 
         while (gameRunning) {
             dungeon.displayMap();
-            System.out.print("Entrez une commande (S/X/W/C/B/Q) : ");
+            System.out.print("Entrez une commande (S/X/W/C/B/I/Q) : ");
             String input = scanner.nextLine().toUpperCase();
 
             switch (input) {
@@ -50,6 +50,9 @@ public class Game {
                     break;
                 case "B":
                     shopInterac.openShop(player); // Accès à la boutique
+                    break;
+                case "I":
+                    System.out.println(player.showInventory());
                     break;
                 case "Q":
                     gameRunning = false;
