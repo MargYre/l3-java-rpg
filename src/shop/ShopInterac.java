@@ -17,6 +17,7 @@ public class ShopInterac {
         System.out.println("Bienvenue dans la boutique ! (Entrez 'q' pour quitter)");
         boolean shopping = true;
         while (shopping) {
+            System.out.println("Vous avez " + player.getCoins() + " pièces.");
             shop.displayItems();
             System.out.print("Votre choix : ");
             String choice = scanner.nextLine();
