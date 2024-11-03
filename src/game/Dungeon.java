@@ -5,8 +5,8 @@ public class Dungeon {
     private int height;
     private Player player;
     private Monster monster;
-    private int exitX;
-    private int exitY;
+    //private int exitX;
+    //private int exitY;
 
     // Getter
     public char[][] getMap() {
@@ -24,12 +24,12 @@ public class Dungeon {
     private void initializeMap() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                map[i][j] = '.'; // Cases vides
+                map[i][j] = '.';
             }
         }
         map[player.getY()][player.getX()] = 'P';
-        map[4][9] = '_';  // Mur au-dessus
-        map[6][9] = '_';  // Mur en-dessous
+        map[4][9] = '_'; 
+        map[6][9] = '_';
         map[5][9] = 'E';
         map[monster.getY()][monster.getX()] = monster.getSymbol();
     }
@@ -47,9 +47,13 @@ public class Dungeon {
         int newX = player.getX() + X;
         int newY = player.getY() + Y;
 
-        
         if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
             if (map[newY][newX] == '_') {
+                map[player.getY()][player.getX()] = 'P';
+                return;
+            }
+            if (map[newY][newX] == 'M') {
+                fight();
                 map[player.getY()][player.getX()] = 'P';
                 return;
             }
@@ -61,5 +65,22 @@ public class Dungeon {
             player.setY(newY);
         }
         map[player.getY()][player.getX()] = 'P';
+    }
+
+    private void fight() {
+        System.out.println("\n*** COMBAT ***");
+        System.out.println("Vous attaquez !");
+        monster.takeDamage(player.getAttackDamage());
+        if (monster.isAlive()) {
+            System.out.println("Le monstre contre-attaque !");
+            player.takeDamage(5);
+            if (!player.isAlive()) {
+                System.out.println("Vous avez été vaincu... Pensez à acheter une arme la prochaine fois.");
+                System.exit(0);
+            }
+        }else {
+            System.out.println("Vous avez vaincu le monstre !");
+            map[monster.getY()][monster.getX()] = '.';
+        }
     }
 }
