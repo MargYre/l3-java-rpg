@@ -3,17 +3,19 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
+import shop.Weapon;
 
-public class Player {
+public class Player extends Character {
     private int x;
     private int y;
     private String name;
     private int coins;
     private List<String> inventory;
+    private Weapon equippedWeapon;
 
     //Constructeur
     public Player(String name) {
-        this.name = name;
+        super(name, 100, 0, 0);
         this.x = 0;
         this.y = 0;
         this.coins = 80;
@@ -44,7 +46,6 @@ public class Player {
     public void setCoins(int coins) {
         this.coins = coins;
     }
-
     //Méthodes
     public void addCoins(int coins) {
         this.coins += coins;
@@ -73,16 +74,5 @@ public class Player {
         }
         return sb.toString();
     }
-    //armes
-    /*public void addWeapon(Weapon weapon) {
-        inventory.add(weapon);
-        System.out.println(weapon.getName() + " a été ajouté à votre inventaire.");
-    }
-    public String showInventory() {
-        StringBuilder s = new StringBuilder("Inventaire :\n");
-        for (Weapon w : inventory) {
-            s.append("- ").append(w.toString()).append("\n");
-        }
-        return s.toString();
-    }*/
+    
 }
