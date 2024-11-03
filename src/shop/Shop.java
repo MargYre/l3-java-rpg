@@ -8,8 +8,10 @@ public class Shop {
 
     public Shop() {
         this.items = new ArrayList<>();
-        items.add(new ShopItem("Kit de Crochetage", 10)); // Exemple d'article
+        items.add(new ShopItem("Kit de Crochetage", 20)); // Exemple d'article
         items.add(new Axe("Axe", 50, 5));
+        items.add(new Sword("Épée", 65, 5));
+        items.add(new Arrow("Flèche", 50, 2, 2));
     }
 
     public void displayItems() {
