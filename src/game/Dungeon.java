@@ -47,11 +47,16 @@ public class Dungeon {
         int newX = player.getX() + X;
         int newY = player.getY() + Y;
 
-        if (map[newY][newX] == '_') {
-            map[player.getY()][player.getX()] = 'P';
-            return;
-        }
+        
         if (newX >= 0 && newX < width && newY >= 0 && newY < height) {
+            if (map[newY][newX] == '_') {
+                map[player.getY()][player.getX()] = 'P';
+                return;
+            }
+            if (map[newY][newX] == 'E') {
+                System.out.println("Vous avez trouvé la sortie !");
+                System.exit(0);;
+            }
             player.setX(newX);
             player.setY(newY);
         }
