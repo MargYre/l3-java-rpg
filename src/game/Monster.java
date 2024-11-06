@@ -19,6 +19,10 @@ public class Monster extends Character {
     }
 
     @Override
+    public int getAttackDamage() {
+        return 9;  // Le monstre a des dégâts fixes
+    }
+    @Override
     protected void die() {
         System.out.println(getName() + " a été vaincu ! Vous récupéré " + goldValue + " pièces d'or.");
     }
