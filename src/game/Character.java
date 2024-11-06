@@ -46,6 +46,7 @@ public abstract class Character {
             die();
         }
     }
+    public abstract int getAttackDamage();
     protected abstract void die();
     public boolean isAlive() {
         return health > 0;
