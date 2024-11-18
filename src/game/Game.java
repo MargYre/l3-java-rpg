@@ -25,9 +25,9 @@ public class Game {
         System.out.println("Utilisez Q pour quitter et B pour accéder à la boutique, I pour afficher votre inventaire.");
 
         boolean gameRunning = true;
-
+        dungeon.displayMap();
         while (gameRunning) {
-            dungeon.displayMap();
+            
             System.out.print("Entrez une commande (S/X/W/C/B/I/Q) : ");
             String input = scanner.nextLine().toUpperCase();
 
@@ -50,13 +50,14 @@ public class Game {
                     break;
                 case "B":
                     shopInterac.openShop(player); // Accès à la boutique
+                    dungeon.displayMap();
                     break;
                 case "I":
                     System.out.println(player.showInventory());
                     break;
                 case "Q":
                     gameRunning = false;
-                    System.out.println("Vous avez quitté le donjon.");
+                    System.out.println("Vous avez quitté le jeu.");
                     break;
                 default:
                     System.out.println("Commande invalide !");
