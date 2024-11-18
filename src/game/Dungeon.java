@@ -16,8 +16,8 @@ public class Dungeon {
         this.height = height;
         this.map = new char[height][width];
         this.player = player;
-        //this.monster = new Monster("Monstre", 50, 20, 8, 5, 'M');
-        this.monster = new Monster("Monstre", 39, 20, 2, 1, 'M');
+        this.monster = new Monster("Monstre", 50, 20, 8, 5, 'M');
+        //this.monster = new Monster("Monstre", 39, 20, 2, 1, 'M');
         this.combat = new CombatSystem();
         initializeMap();
     }
