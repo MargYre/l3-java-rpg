@@ -20,6 +20,7 @@ public class Player extends Character {
         this.y = 0;
         this.coins = 80;
         this.inventory = new ArrayList<>();
+        this.equippedWeapon = null;
     }
     //Getters et setters
     public int getX() {
@@ -46,7 +47,7 @@ public class Player extends Character {
     public void setCoins(int coins) {
         this.coins = coins;
     }
-    //Méthodes
+    //Méthodes argent/boutique
     public void addCoins(int coins) {
         this.coins += coins;
     }
@@ -79,6 +80,7 @@ public class Player extends Character {
         this.equippedWeapon = weapon;
         System.out.println("Vous avez équipé " + weapon.getName());
     }
+    @Override
     public int getAttackDamage() {
         if (equippedWeapon == null) {
             return 1;  // Dégâts de base sans arme

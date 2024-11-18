@@ -5,8 +5,7 @@ public class Dungeon {
     private int height;
     private Player player;
     private Monster monster;
-    //private int exitX;
-    //private int exitY;
+    private CombatSystem combat;
 
     // Getter
     public char[][] getMap() {
@@ -18,7 +17,8 @@ public class Dungeon {
         this.map = new char[height][width];
         this.player = player;
         //this.monster = new Monster("Monstre", 50, 20, 8, 5, 'M');
-        this.monster = new Monster("Monstre", 50, 20, 2, 1, 'M');
+        this.monster = new Monster("Monstre", 39, 20, 2, 1, 'M');
+        this.combat = new CombatSystem();
         initializeMap();
     }
     private void initializeMap() {
@@ -53,7 +53,10 @@ public class Dungeon {
                 return;
             }
             if (map[newY][newX] == 'M') {
-                fight();
+                combat.initiateCombat(player, monster);
+                if (!monster.isAlive()) {
+                    map[monster.getY()][monster.getX()] = '.';
+                }
                 map[player.getY()][player.getX()] = 'P';
                 return;
             }
@@ -67,7 +70,7 @@ public class Dungeon {
         map[player.getY()][player.getX()] = 'P';
     }
 
-    private void fight() {
+    /*private void fight() {
         System.out.println("\n*** COMBAT ***");
         System.out.println("Vous attaquez !");
         monster.takeDamage(player.getAttackDamage());
@@ -82,5 +85,5 @@ public class Dungeon {
             System.out.println("Vous avez vaincu le monstre !");
             map[monster.getY()][monster.getX()] = '.';
         }
-    }
+    }*/
 }

@@ -33,7 +33,12 @@ public class ShopInterac {
                         if (player.canAfford(item.getPrice())) {
                             player.spendCoins(item.getPrice());
                             player.addItem(item.getName());
-                            System.out.println(" **Vous avez acheté : " + item.getName() + "**");
+                            if (item instanceof Weapon) {
+                                player.equipWeapon((Weapon) item);
+                                System.out.println(" **Vous avez acheté et équipé : " + item.getName() + "**");
+                            } else {
+                                System.out.println(" **Vous avez acheté : " + item.getName() + "**");
+                            }
                             shop.removeItem(index);
                         } else {
                             System.out.println("Vous n'avez pas assez de pièces pour acheter " + item.getName() + ".");
